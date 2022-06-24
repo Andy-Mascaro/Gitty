@@ -3,6 +3,8 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
+jest.mock('../lib/services/github.js');
+
 describe('auth routes', () => {
   beforeEach(() => {
     return setup(pool);
@@ -14,7 +16,7 @@ describe('auth routes', () => {
     );
   });
 
-  it('should login and redirect users to api/v1/github/dashboard', async () => {
+  it('should login and redirect users to /api/v1/github/dashboard', async () => {
     const resp = await request
       .agent(app)
       .get('/api/v1/github/callback?code=42')
