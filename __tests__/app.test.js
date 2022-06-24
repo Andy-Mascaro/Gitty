@@ -33,7 +33,7 @@ describe('auth routes', () => {
     });
 
     it('Should get all posts', async () => {
-      const resp = await request(app).get('/posts');
+      const resp = await request(app).get('/api/v1/posts');
       expect(resp.body.length).toEqual(1);
       const post = resp.body.find((info) => info.id === '1');
       expect(post).toHaveProperty('repo', 'SQL is fun');
