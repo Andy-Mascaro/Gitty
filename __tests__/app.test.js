@@ -19,7 +19,7 @@ describe('auth routes', () => {
   it('should login and redirect users to /api/v1/github/dashboard', async () => {
     const resp = await request
       .agent(app)
-      .get('/api/v1/github/callback?code=42')
+      .get('/api/v1/github/callback?code')
       .redirects(1);
 
     expect(resp.body).toEqual({
