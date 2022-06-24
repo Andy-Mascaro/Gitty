@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const { post } = require('../lib/app');
 
 jest.mock('../lib/services/github.js');
 
@@ -29,6 +30,13 @@ describe('auth routes', () => {
       avatar: expect.any(String),
       iat: expect.any(Number),
       exp: expect.any(Number),
+    });
+
+    it('Should get all posts', async () => {
+      const resp = await request(app).get('/posts');
+      expect(resp.body.length).toEqual(1);
+      const post = resp.body.find((info) => info.id === '1');
+      expect(post).toHaveProperty('repo', 'SQL is fun');
     });
   });
 
