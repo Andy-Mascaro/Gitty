@@ -17,7 +17,7 @@ describe('auth routes', () => {
     return setup(pool);
   });
 
-  it('should redirect to github oauth upon login', async () => {
+  it.skip('should redirect to github oauth upon login', async () => {
     const resp = await request(app).get('/api/v1/github/login');
     expect(resp.header.location).toMatch(
       /https:\/\/github.com\/login\/oauth\/authorize\?client_id=[\w\d]+&scope=user&redirect_uri=http:\/\/localhost:7890\/api\/v1\/github\/callback/i
